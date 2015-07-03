@@ -1,0 +1,8 @@
+_staff/
+node_modules/
+bower_components/
+
+*.sublime-project
+*.sublime-workspace
+*.bat
+*.zip

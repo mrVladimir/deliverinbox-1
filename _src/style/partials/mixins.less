@@ -1,0 +1,40 @@
+.include-font(@family: arial, @weight: normal, @style: normal){
+    @font-face{
+        font-family: @family;
+        src:url('../fonts/@{family}.eot');
+        src:url('../fonts/@{family}.eot?#iefix') format('embedded-opentype'),
+            url('../fonts/@{family}.woff') format('woff'),
+            url('../fonts/@{family}.ttf') format('truetype');
+        font-weight: @weight;
+        font-style: @style;
+    }
+}
+
+.image-2x(@image, @width, @height) {
+	@filename  : ~`/(.*)\.(jpg|jpeg|png|gif)/.exec(@{image})[1]`;
+	@extension : ~`/(.*)\.(jpg|jpeg|png|gif)/.exec(@{image})[2]`;
+	background-image: ~`"url(@{filename}.@{extension})"`;
+	background-repeat: no-repeat;
+
+	@media
+		only screen and (-webkit-min-device-pixel-ratio: 2),
+		only screen and (   min--moz-device-pixel-ratio: 2),
+		only screen and (     -o-min-device-pixel-ratio: 2/1),
+		only screen and (        min-device-pixel-ratio: 2),
+		only screen and (                min-resolution: 192dpi),
+		only screen and (                min-resolution: 2dppx) {
+			background-image: ~`"url(@{filename}@2x.@{extension})"`;
+			background-size: @width @height;
+	}
+}
+
+.icon-svg(@image, @width, @height) {
+	@filename  : ~`/(.*)\.(svg)/.exec(@{image})[1]`;
+	@extension : ~`/(.*)\.(svg)/.exec(@{image})[2]`;
+
+	display: inline-block;
+	width: @width;
+	height: @height;
+	background-image: ~`"url(../img/vector/@{filename}.@{extension})"`;
+	background-repeat: no-repeat;
+}
