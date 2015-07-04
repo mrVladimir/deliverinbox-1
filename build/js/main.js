@@ -9242,7 +9242,6 @@ $(document).ready(function(event){
 
 	// объект мониторит положение страницы и меняет активный пункт меню и хэш
 	var scrollMonitor = new ScrollMonitor();
-	console.log(scrollMonitor.obj())
 
 	/* Валидация */
 
@@ -9346,11 +9345,6 @@ function ScrollMonitor() {
 		calculateHashBlocks();
 	})
 
-	return {
-		obj: function() {
-			console.log(hashBlocks)
-		}
-	}
 }
 
 
