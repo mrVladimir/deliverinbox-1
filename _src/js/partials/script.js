@@ -18,7 +18,7 @@ $(document).ready(function(event){
 
 	// объект мониторит положение страницы и меняет активный пункт меню и хэш
 	var scrollMonitor = new ScrollMonitor();
-
+	console.log(scrollMonitor.obj())
 
 	/* Валидация */
 
@@ -67,12 +67,13 @@ function ScrollMonitor() {
 				end: null
 			});
 		})
+		var menuHeight = parseInt($('#menu').css('height'));
 		hashBlocks.forEach(function(hashBlock, i){
 			var prevHeight = hashBlocks[i-1] ? hashBlocks[i-1].height : 0; 
 			var blockOffset = hashBlock.block.offset().top;
 
-			hashBlock.start = blockOffset - prevHeight * 0.5;
-			hashBlock.end = blockOffset + hashBlock.height * 0.5;
+			hashBlock.start = blockOffset - prevHeight * 0.5 - menuHeight;
+			hashBlock.end = blockOffset + hashBlock.height * 0.5 - menuHeight;
 		})
 	}
 	
@@ -120,6 +121,12 @@ function ScrollMonitor() {
 	$(window).on('resize', function(){
 		calculateHashBlocks();
 	})
+
+	return {
+		obj: function() {
+			console.log(hashBlocks)
+		}
+	}
 }
 
 
