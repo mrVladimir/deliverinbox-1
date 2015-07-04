@@ -9225,9 +9225,8 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
  */
 $(document).ready(function(event){
 
-	/* ========================= */
-	/* SCROLL */
 
+	/* SCROLL */
 	// замена функции для старых браузеров, не поддерживающих пушстейт
 	if (!history.pushState) pageScroll = function() {	
 		location.hash = this.hash; 
@@ -9251,12 +9250,9 @@ $(document).ready(function(event){
 	var scrollMonitor = new ScrollMonitor();
 
 
-	/* ========================= */
 	/* ВАЛИДАЦИЯ */
 	var validator = new Validator();
 	
-
-
 })
 
 // плавный скрол до элемента по хэшу
