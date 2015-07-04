@@ -6806,6 +6806,7 @@ a:hover {
   outline: none;
   border-radius: 5px;
   box-shadow: 0 3px 0 #D76600;
+  cursor: pointer;
   -webkit-transition: color 0.3s, background-color 0.3s, -webkit-transform 0.3s, box-shadow 0.3s;
           transition: color 0.3s, background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
@@ -6908,6 +6909,7 @@ a:hover {
   min-width: 300px;
   padding-top: 4px;
   background: url(../img/vector/line.svg) repeat-x top left #ffffff;
+  z-index: 10;
 }
 #menu .navbar-nav {
   float: right;
@@ -7346,6 +7348,57 @@ p.about-selected {
     background-image: url(../img/request-dog@2x.png);
     background-size: 438px 401px;
   }
+}
+.thanks-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+}
+.thanks-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  max-width: 390px;
+  height: 390px;
+  background: #7fc1ca;
+}
+.thanks-popup h1 {
+  margin: 0;
+  padding-top: 30px;
+  padding-bottom: 100px;
+  background: #fff;
+  font-size: 48px;
+}
+.thanks-dog {
+  width: 180px;
+  height: 180px;
+  margin: -82px auto 0;
+  border-radius: 50%;
+  border: 3px solid #7fc1ca;
+  background: url(../img/vector/logo-dog.svg) no-repeat center #ffffff;
+  background-size: 65%;
+}
+.thanks-text {
+  margin-top: 25px;
+  font-size: 18px;
+}
+.thanks-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  background: url(../img/vector/x.svg) no-repeat center;
+  background-size: 45%;
 }
 /* ============================================================== */
 /* Footer */

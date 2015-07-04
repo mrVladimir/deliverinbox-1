@@ -1,83 +1,52 @@
 $(document).ready(function(event){
 
+	/* ========================= */
 	/* SCROLL */
 
-	// плавный скрол к хэшу после загрузки страницы
+	// замена функции для старых браузеров, не поддерживающих пушстейт
+	if (!history.pushState) pageScroll = function() {	
+		location.hash = this.hash; 
+	}
+
+	// плавный (обычный для старых браузеров) скрол к якорю после загрузки страницы
 	setTimeout(function(){
 		$('html, body').scrollTop(0);
 		if (location.hash && location.hash !== '#main') setTimeout(function(){
 			pageScroll(location.hash)
 		}, 300);
 	}, 1)
-
-	if (!history.pushState) pageScroll = function() {
-		// для старых браузеров, не поддерживающих пушСтейт
-		location.hash = this.hash;
-	}
-	// плавный скрол к хэшу по клику
+	
+	// плавный скрол к якорю по клику
 	$('a[href^=#]').on('click', function(event){
 		event.preventDefault();
 		pageScroll(this.hash);
 	})
 	
+	// объект мониторит положение страницы и меняет активный пункт меню и хэш
 	var scrollMonitor = new ScrollMonitor();
 
 
+	/* ========================= */
 	/* ВАЛИДАЦИЯ */
+	var validator = new Validator();
+	
 
-	var valid;
 
-	$('.request-submit').on('click', function(event){
-		event.preventDefault();
-
-		valid = true;
-
-		// проверка инпутов
-		$('.request-input').each(function(){
-			if (!$(this).val().length) {
-				validationError($(this));
-			} else {
-				switch ($(this).attr('name')) {
-					case 'phone': {
-						var val = $(this).val();
-						if (val.length < 11 || val.match(/[a-z]/i)) {
-							validationError($(this));
-							break;
-						}
-						break;
-					}
-					case 'email': {
-						var exp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-		    			if (!exp.test($(this).val())) {
-							validationError($(this));
-							break;
-		    			}
-					}
-				}
-			}
-		})
-
-		if (valid) $('.request-form').submit();
-	})
-
-	$('.request-input').on('focus', function(){
-		if ($(this).hasClass('error')) $(this).removeClass('error');
-	})
-
-	function validationError($el) {
-		valid = false;
-		$el.addClass('error');
-	}
-
-	// сабмит формы по энтеру при фокусе на инпуте
-	$('body').on('keyup', function(event) {
-		if (event.keyCode === 13) {
-			if ($('.request-input:focus')) $('.request-submit').click();
-		}
-	})
 })
 
-// отслеживает текущий раздел и меняет активный элемент в меню. при ресайзе перерасчитывает объекты
+// плавный скрол до элемента по хэшу
+function pageScroll(hash) {
+	var target = $(hash)[0];
+	var menuHeight = parseInt($('#menu').css('height'));
+	var offset = target.offsetTop - menuHeight;
+	
+	$('html, body').animate({
+		scrollTop: offset
+	}, 1000);
+}
+
+// отслеживает текущий раздел и меняет активный элемент в меню
+// при ресайзе перерасчитывает объекты
 function ScrollMonitor() {
 	var $menuItems = $('.navbar-item:has(a[href^=#])');
 	var $links = $('[href^=#].navbar-link');
@@ -151,13 +120,133 @@ function ScrollMonitor() {
 	})
 }
 
-// плавный скрол до элемента по хэшу
-function pageScroll(hash) {
-	var target = $(hash)[0];
-	var menuHeight = parseInt($('#menu').css('height'));
-	var offset = target.offsetTop - menuHeight;
-	
-	$('html, body').animate({
-		scrollTop: offset
-	}, 1000);
+
+
+// форма
+// function formValidation() {
+// 	valid = true;
+
+// 	// проверка инпутов
+// 	$('.request-input').each(function(){
+// 		if (!$(this).val().length) {
+// 			validationError($(this));
+// 		} else {
+// 			switch ($(this).attr('name')) {
+// 				case 'phone': {
+// 					var val = $(this).val();
+// 					if (val.length < 11 || val.match(/[a-z]/i)) {
+// 						validationError($(this));
+// 						break;
+// 					}
+// 					break;
+// 				}
+// 				case 'email': {
+// 					var exp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+// 	    			if (!exp.test($(this).val())) {
+// 						validationError($(this));
+// 						break;
+// 	    			}
+// 				}
+// 			}
+// 		}
+// 	})
+
+// 	if (valid) formSubmit();
+// }
+// function formSubmit() {
+// 	// отправить данные на сервер
+
+// 	// показать попап
+// 	$('.thanks-overlay').fadeIn(300);
+
+// 	// очистить форму
+// 	$('.request-form')[0].reset();
+// }
+
+// function validationError($el) {
+// 	valid = false;
+// 	$el.addClass('error');
+// }
+
+function Validator() {
+	var valid;
+
+	function formValidation() {
+		valid = true;
+		
+		// проверка инпутов
+		$('.request-input').each(function(){
+			if (!$(this).val().length) {
+				validationError($(this));
+			} else {
+				switch ($(this).attr('name')) {
+					case 'phone': {
+						var val = $(this).val();
+						if (val.length < 11 || val.match(/[a-z]/i)) {
+							validationError($(this));
+						}
+						break;
+					}
+					case 'email': {
+						var exp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		    			if (!exp.test($(this).val())) {
+							validationError($(this));
+		    			}
+						break;
+					}
+				}
+			}
+		})
+
+		if (valid) formSubmit();
+	}
+
+	function formSubmit() {
+		// отправить данные на сервер
+		// TODO
+
+		// показать попап
+		$('.thanks-overlay').fadeIn(300);
+
+		// очистить форму
+		$('.request-form')[0].reset();
+	}
+
+	function validationError($el) {
+		valid = false;
+		$el.addClass('error');
+	}
+
+	$('.request-submit').on('click', function(event){
+		event.preventDefault();
+		formValidation();
+	})
+
+	// убрать класс ошибкки при фокусе на инпуте
+	$('.request-input').on('focus', function(){
+		if ($(this).hasClass('error')) $(this).removeClass('error');
+	})
+
+	// закрыть попап
+	$('.thanks-overlay').on('click', function(event){
+		if ($(event.target).hasClass('thanks-overlay') || $(event.target).hasClass('thanks-close')) 
+			$(this).fadeOut(300);
+	})
+
+	// обработка ввода с клавиатуры
+	$('body').on('keyup', function(event) {
+		// сабмит по энтеру
+		if (event.keyCode === 13) {
+			if ($('.request-input:focus').length)  {
+				$('.request-submit').click();
+			}
+		}
+		// закрыть попап по эскейпу
+		if (event.keyCode === 27) {
+			if ($('.thanks-overlay:visible').length) {
+				$('.thanks-overlay').fadeOut(300);
+			}
+
+		}
+	})
 }
