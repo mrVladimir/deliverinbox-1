@@ -9346,53 +9346,6 @@ function ScrollMonitor() {
 }
 
 
-
-// форма
-// function formValidation() {
-// 	valid = true;
-
-// 	// проверка инпутов
-// 	$('.request-input').each(function(){
-// 		if (!$(this).val().length) {
-// 			validationError($(this));
-// 		} else {
-// 			switch ($(this).attr('name')) {
-// 				case 'phone': {
-// 					var val = $(this).val();
-// 					if (val.length < 11 || val.match(/[a-z]/i)) {
-// 						validationError($(this));
-// 						break;
-// 					}
-// 					break;
-// 				}
-// 				case 'email': {
-// 					var exp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-// 	    			if (!exp.test($(this).val())) {
-// 						validationError($(this));
-// 						break;
-// 	    			}
-// 				}
-// 			}
-// 		}
-// 	})
-
-// 	if (valid) formSubmit();
-// }
-// function formSubmit() {
-// 	// отправить данные на сервер
-
-// 	// показать попап
-// 	$('.thanks-overlay').fadeIn(300);
-
-// 	// очистить форму
-// 	$('.request-form')[0].reset();
-// }
-
-// function validationError($el) {
-// 	valid = false;
-// 	$el.addClass('error');
-// }
-
 function Validator() {
 	var valid;
 
