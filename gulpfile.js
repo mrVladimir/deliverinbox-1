@@ -27,7 +27,7 @@ var path = {
     },
     src: {
         html: '_src/*.html',
-        js: '_src/js/main.js',
+        js: '_src/js/*.js',
         style: '_src/style/main.less',
         img: '_src/img/**/*.*',
         sprite: '_src/sprite/*.*',

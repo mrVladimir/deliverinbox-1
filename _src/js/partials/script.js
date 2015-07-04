@@ -1,13 +1,8 @@
 $(document).ready(function(event){
 
+	/* Скрол */
 
-	/* SCROLL */
-	// замена функции для старых браузеров, не поддерживающих пушстейт
-	if (!history.pushState) pageScroll = function() {	
-		location.hash = this.hash; 
-	}
-
-	// плавный (обычный для старых браузеров) скрол к якорю после загрузки страницы
+	// плавный скрол к якорю после загрузки страницы
 	setTimeout(function(){
 		$('html, body').scrollTop(0);
 		if (location.hash && location.hash !== '#main') setTimeout(function(){
@@ -20,22 +15,27 @@ $(document).ready(function(event){
 		event.preventDefault();
 		pageScroll(this.hash);
 	})
-	
+
 	// объект мониторит положение страницы и меняет активный пункт меню и хэш
 	var scrollMonitor = new ScrollMonitor();
 
 
-	/* ВАЛИДАЦИЯ */
+	/* Валидация */
+
+	// объект обслуживает форму
 	var validator = new Validator();
 	
 })
+
+
+/* Служебные классы и функции */
 
 // плавный скрол до элемента по хэшу
 function pageScroll(hash) {
 	var target = $(hash)[0];
 	var menuHeight = parseInt($('#menu').css('height'));
 	var offset = target.offsetTop - menuHeight;
-	
+
 	$('html, body').animate({
 		scrollTop: offset
 	}, 1000);
@@ -47,6 +47,12 @@ function ScrollMonitor() {
 	var $menuItems = $('.navbar-item:has(a[href^=#])');
 	var $links = $('[href^=#].navbar-link');
 	var hashBlocks = [];
+
+	// замена метода для старых браузеров
+	if (!history.pushState) update = function(hashBlock) {
+		$menuItems.removeClass('active');
+		hashBlock.menuItem.addClass('active');
+	}
 
 	// прописывает значения в объекты, которые понадобятся для определения позиции
 	function calculateHashBlocks() {
@@ -159,6 +165,7 @@ function Validator() {
 
 		// очистить форму
 		$('.request-form')[0].reset();
+		$('.request-input:focus').blur();
 	}
 
 	function validationError($el) {
