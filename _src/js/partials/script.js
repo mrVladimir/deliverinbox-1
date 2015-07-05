@@ -164,7 +164,7 @@ function Validator() {
 	        type: "POST",
 	        data: {
 	                name: $('input[name=name]').val(),
-	                name: $('input[name=surname]').val(),
+	                surname: $('input[name=surname]').val(),
 	                company: $('input[name=company]').val(),
 	                phone: $('input[name=phone]').val(),
 	                email: $('input[name=email]').val()
