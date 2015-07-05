@@ -159,7 +159,21 @@ function Validator() {
 
 	function formSubmit() {
 		// отправить данные на сервер
-		// TODO
+		$.ajax({
+	        url: "https://easylead.ru/easyAdmin/service/deliverinbox/post_lead.php",
+	        type: "POST",
+	        data: {
+	                name: $('input[name=name]').val(),
+	                name: $('input[name=surname]').val(),
+	                company: $('input[name=company]').val(),
+	                phone: $('input[name=phone]').val(),
+	                email: $('input[name=email]').val()
+	        },
+	        dataType: "JSON",
+	        error: function() {
+	        	console.error('Ошибка при отправке данных на сервер');
+	        }
+		});
 
 		// показать попап
 		$('.thanks-overlay').fadeIn(300);
