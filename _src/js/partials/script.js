@@ -14,6 +14,9 @@ $(document).ready(function(event){
 	$('a[href^=#]').on('click', function(event){
 		event.preventDefault();
 		pageScroll(this.hash);
+		if (!$('.navbar-toggle').hasClass('collapsed')) $('.navbar-toggle').click();
+	})
+	$('body').on('click', function(event){
 	})
 
 	// объект мониторит положение страницы и меняет активный пункт меню и хэш
@@ -160,7 +163,7 @@ function Validator() {
 	function formSubmit() {
 		// отправить данные на сервер
 		$.ajax({
-	        url: "https://easylead.ru/easyAdmin/service/deliverinbox/post_lead.php",
+	        url: "https://tracker.easylead.ru/service/deliverinbox/post_lead.php",
 	        type: "POST",
 	        data: {
 	                name: $('input[name=name]').val(),

@@ -7,28 +7,40 @@
 /* Menu */
 
 /* id, чтобы перебить специфичность стандартных стилей */
+.navbar-wrap {
+	.clearfix;
+	position: fixed;
+	padding-top: 4px;
+	z-index: 25;
+	width: 100%;
+	top: 0;
+	background: url(../img/vector/line.svg) repeat-x top left #fff;
+	
+	border-bottom: 1px solid;
+	border-color: #E7E7E7;
+}
 #menu {
-
+	position: relative;
 	margin-bottom: 0;
 	box-sizing: border-box;
-	height: 80px;
+	height: 75px;
 	min-width: 300px;
-	padding-top: 4px;
-	background: url(../img/vector/line.svg) repeat-x top left #fff;
 	z-index: 25;
+	background-color: #fff;
+	border: none;
 
 		.navbar-nav {
 			float: right;
 			margin-right: 50px;
-			border-bottom: 1px solid #E7E7E7;
 			
 			.navbar-item {
-				margin-right: 40px;
+				margin-left: 40px;
 				
-				&:last-child {margin-right: 0;}
+				&:first-child {margin-right: 0;}
 			}
 
 			.navbar-link {
+				position: relative;
 				line-height: 1;
 				padding: 33px 0 22px;
 				color: #000;
@@ -40,8 +52,13 @@
 					color: #7fc1ca;
 				}
 			}
-
-			
+		}
+		.navbar-link-enter {
+			position: relative;
+			left: 1px;
+			top: -9px;
+			.icon-svg('login.svg', 10px, 10px);
+			background-size: 100%;
 		}
 
 		@media (max-width: @screen-sm-max) {
@@ -55,14 +72,21 @@
 			.navbar-nav {
 				margin: 0;
 				float: none;
+				padding-top: 5px;
+				padding-bottom: 10px;
+				border-bottom: 1px solid #E7E7E7;
+
+				.navbar-item {
+					margin: 0 !important;
+				}
+				.navbar-link {
+					text-align: left;
+					padding: 15px 0 15px 20px;
+					border: none;
+					color: #000 !important;
+				}
 			}
 
-			.navbar-item {
-				margin: 0 !important;
-			}
-			.navbar-link {
-				padding: 24px 0 20px;
-			}
 		}
 
 		.active {
@@ -78,7 +102,7 @@
 		}
 
 		.navbar-toggle {
-			margin-top: 23px;
+			margin-top: 26px;
 			margin-right: 25px;
 			border: none;
 			padding: 0;
@@ -158,6 +182,25 @@
 
 /* ============================================================== */
 /* Header */
+.header-wrap {
+	position: relative;
+	background-color: #BDE8EF;
+}
+	.header-back {
+		position: absolute;
+		width: 50%;
+		background: black;
+		height: 441px;
+
+		&-left {
+			left: 0;
+		}
+
+		&-right {
+			right: 0;
+		}
+	}
+
 
 .header {
 	margin-top: 70px;
