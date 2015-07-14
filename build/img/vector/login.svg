@@ -1,16 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
-    <title>Path 412 + Path 413 + Path 414 Copy</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="deliverinbox_thx-copy" sketch:type="MSArtboardGroup" transform="translate(-1007.000000, -468.000000)" stroke="#7FC1CA">
-            <g id="Path-412-+-Path-413-+-Path-414-Copy" sketch:type="MSLayerGroup" transform="translate(1007.569010, 469.226562)">
-                <path d="M0.45414673,4.41763296 L0.45414673,0.157226562 L10.4541467,0.157226562 L10.4541467,10.1572266 L6.03212247,10.1572266" id="Path-412" stroke-width="2" sketch:type="MSShapeGroup"></path>
-                <path d="M0.714233401,9.33093262 L5.25756836,5.38598633" id="Path-413" sketch:type="MSShapeGroup"></path>
-                <path d="M2.76775159,5.15722656 L5.45414673,5.15722656 L5.45414673,7.74408162" id="Path-414" sketch:type="MSShapeGroup"></path>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg"><title>Path 412 + Path 413 + Path 414 Copy</title><g stroke="#7FC1CA" fill="none" fill-rule="evenodd"><path d="M1.023 5.644v-4.26h10v10H6.6" stroke-width="2"/><path d="M1.283 10.557l4.544-3.944M3.337 6.384h2.686V8.97"/></g></svg>

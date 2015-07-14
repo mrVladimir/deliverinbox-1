@@ -109,6 +109,8 @@ function ScrollMonitor() {
 	// показывает контент, который скрыт при загрузке
 	function showContent(hashBlock) {
     	hashBlock.block.children('.onload-hidden').addClass('show-content');
+    	// хардкод из-за растягивания
+    	if (hashBlock.block.attr('id') === 'about') $('.about-selected').addClass('show-content');
 	}
 
 
